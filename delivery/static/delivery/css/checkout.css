@@ -1,0 +1,207 @@
+:root {
+    --primary: #E63946;
+    --secondary: #1D3557;
+    --secondary-hover: #11223A;
+    --bg: #F8F9FA;
+    --card-bg: #FFFFFF;
+    --text-dark: #1E293B;
+    --text-muted: #64748B;
+    --border: #E2E8F0;
+    --success-green: #16A34A;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+
+.checkout-container {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Navbar */
+.checkout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+}
+
+.brand-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+}
+
+.brand-name span {
+    color: var(--secondary);
+}
+
+.page-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 20px;
+}
+
+/* Error Banner */
+.error-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #FEE2E2;
+    color: #DC2626;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid #FCA5A5;
+    font-weight: 700;
+}
+
+/* Main Checkout Card */
+.checkout-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.card-header h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--secondary);
+}
+
+/* Items Table */
+.items-table-wrapper {
+    margin-bottom: 24px;
+}
+
+.checkout-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.checkout-table th {
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.checkout-table th.text-right {
+    text-align: right;
+}
+
+.checkout-table td {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.text-right {
+    text-align: right;
+}
+
+.item-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.item-price {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--secondary);
+}
+
+/* Price Breakdown */
+.price-breakdown {
+    background-color: #F8FAFC;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+}
+
+.breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.free-badge {
+    color: var(--success-green);
+    font-weight: 800;
+}
+
+.breakdown-row.grand-total {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 2px dashed var(--border);
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.total-amount {
+    color: var(--secondary);
+}
+
+/* Razorpay Button */
+.btn-pay {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--secondary);
+    color: #FFFFFF;
+    font-size: 1.05rem;
+    font-weight: 800;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(29, 53, 87, 0.25);
+}
+
+.btn-pay:hover {
+    background-color: var(--secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(29, 53, 87, 0.35);
+}
+
+.pay-icon {
+    font-size: 1.2rem;
+}

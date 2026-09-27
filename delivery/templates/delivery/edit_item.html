@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>Edit Dish - BiteRush</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/update_restaurant.css' %}">
+</head>
+<body>
+    <div class="form-card" style="max-width: 500px; margin: 40px auto;">
+        <h1 class="brand-title">Edit Dish</h1>
+        <p class="subtitle">Update details for {{ item.name }}</p>
+
+        <form action="{% url 'edit_item' item.id %}" method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="name">Dish Name</label>
+                <input type="text" name="name" id="name" value="{{ item.name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" rows="3" style="width: 100%; border-radius: 8px; padding: 8px; border: 1px solid #CCC;">{{ item.description }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price (₹)</label>
+                <input type="number" name="price" id="price" step="0.01" value="{{ item.price }}" required>
+            </div>
+
+            <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" name="vegetarian" id="vegetarian" {% if item.vegetarian %}checked{% endif %}>
+                    Vegetarian
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="picture">Image URL</label>
+                <input type="url" name="picture" id="picture" value="{{ item.picture }}">
+            </div>
+
+            <button type="submit" class="btn-submit">Save Changes</button>
+            <a href="{% url 'open_update_menu' item.restaurant.id %}" style="display: block; text-align: center; margin-top: 12px; color: #64748B; text-decoration: none;">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

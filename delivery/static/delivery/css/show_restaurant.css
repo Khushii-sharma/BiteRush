@@ -1,0 +1,194 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #F8F9FA;
+    min-height: 100vh;
+    padding: 30px 20px;
+    color: #1D3557;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.brand-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #E63946; 
+    letter-spacing: -0.5px;
+}
+
+.brand-name span {
+    color: #000000; 
+}
+
+.subtitle {
+    color: #6C757D;
+    font-size: 0.95rem;
+    margin-top: 2px;
+}
+
+.btn-add-main {
+    background-color: #E63946;
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.25);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-add-main:hover {
+    background-color: #C82333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(200, 35, 51, 0.35);
+}
+
+/* Restaurant Grid Layout */
+.restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* Individual Restaurant Card */
+.restaurant-card {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    border: 1px solid #EAEAEA;
+    transition: all 0.25s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Wrapper with Floating Badge */
+.card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background-color: #E2E8F0;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rating-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: #24963F; /* Zomato/Swiggy green for high ratings */
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Body */
+.card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.restaurant-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1D3557;
+    margin-bottom: 6px;
+}
+
+.cuisine-tag {
+    display: inline-block;
+    color: #6C757D;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+/* Control Buttons */
+.card-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-action {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-menu {
+    background-color: #E63946;
+    color: #FFFFFF;
+    flex: 2;
+}
+
+.btn-menu:hover {
+    background-color: #C82333;
+}
+
+.btn-edit {
+    background-color: #F1F5F9;
+    color: #1D3557;
+    flex: 1;
+}
+
+.btn-edit:hover {
+    background-color: #E2E8F0;
+}
+
+.btn-delete {
+    background-color: #FEE2E2;
+    color: #DC2626;
+    padding: 8px 10px;
+}
+
+.btn-delete:hover {
+    background-color: #FCA5A5;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #6C757D;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px dashed #E2E8F0;
+}

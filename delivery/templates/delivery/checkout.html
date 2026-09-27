@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'delivery/css/checkout.css' %}">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+    <div class="checkout-container">
+        
+        <!-- Header -->
+        <header class="checkout-header">
+            <div class="brand">
+                <h1 class="brand-name">Bite<span>Rush</span></h1>
+            </div>
+        </header>
+
+        <h2 class="page-title">Order Checkout</h2>
+
+        {% if error %}
+            <div class="error-banner">
+                <span class="error-icon">⚠️</span>
+                <p>{{ error }}</p>
+            </div>
+        {% else %}
+            <div class="checkout-card">
+                
+                <div class="card-header">
+                    <h3>Order Summary</h3>
+                </div>
+
+                <!-- Items List -->
+                <div class="items-table-wrapper">
+                    <table class="checkout-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th class="text-right">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart_items %}
+                                <tr>
+                                    <td class="item-name">{{ item.name }}</td>
+                                    <td class="item-price text-right">₹{{ item.price }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Total Amount Breakdown -->
+                <div class="price-breakdown">
+                    <div class="breakdown-row">
+                        <span>Items Total</span>
+                        <span>₹{{ total_price }}</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span>Delivery Fee</span>
+                        <span class="free-badge">FREE</span>
+                    </div>
+                    <div class="breakdown-row grand-total">
+                        <span>Total Payable</span>
+                        <span class="total-amount">₹{{ total_price }}</span>
+                    </div>
+                </div>
+
+                <!-- Razorpay Button -->
+                <button id="rzp-button" class="btn-pay">
+                    <span>Pay with Razorpay</span>
+                </button>
+
+            </div>
+        {% endif %}
+
+    </div>
+
+    <!-- Razorpay Script -->
+    <script>
+        var options = {
+            "key": "rzp_test_TgjoR6pxgBYfK4",
+            "amount": "{{ total_price|floatformat:2|add:'0.00'|floatformat:2 }}00",
+            "currency": "INR",
+            "name": "BiteRush",
+            "description": "Order Payment",
+            "order_id": "{{ order_id }}",
+            "handler": function (response) {
+
+                window.location.href = "{% url 'orders' username %}";
+            },
+            "prefill": {
+                "name": "{{ username }}",
+                "email": "customer@example.com"
+            },
+            "theme": {
+                "color": "#1D3557"
+            }
+        };
+        var rzp = new Razorpay(options);
+        document.getElementById('rzp-button').onclick = function(e) {
+            rzp.open();
+            e.preventDefault();
+        }
+    </script>
+    
+</body>
+</html>

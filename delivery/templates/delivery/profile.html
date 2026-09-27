@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - User Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'delivery/css/profile.css' %}">
+</head>
+<body>
+
+    <div class="profile-container">
+        
+        <!-- Navbar -->
+        <header class="profile-header">
+            <div class="brand">
+                <h1 class="brand-name">Bite<span>Rush</span></h1>
+            </div>
+            <a href="{% url 'customer_home' username %}" class="btn-back">Home</a>
+        </header>
+
+        <!-- User Details Card -->
+        <div class="user-card">
+            <div class="avatar-large">👤</div>
+            <div class="user-details">
+                <h2 class="user-name">{{ username }}</h2>
+                <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value">{{ customer.email }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Mobile:</span>
+                    <span class="info-value">{{ customer.mobile }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Delivery Address:</span>
+                    <span class="info-value">{{ customer.address }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders History -->
+        <div class="orders-section">
+            <h3 class="section-title">📦 Order History</h3>
+
+            {% if orders %}
+                <div class="orders-list">
+                    {% for order in orders %}
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <span class="order-id">Order #{{ order.id }}</span>
+                                    <span class="order-date">{{ order.created_at|date:"d M Y, h:i A" }}</span>
+                                </div>
+                                <span class="order-status">
+                                    {{ order.status }}
+                                </span>
+                            </div>
+
+                            <!-- Purchased Items -->
+                            <div class="order-items">
+                                {% for item in order.items.all %}
+                                    <div class="order-item-row">
+                                        <span class="item-name">{{ item.name }}</span>
+                                        <span class="item-price">₹{{ item.price }}</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="order-footer">
+                                <span>Total Paid</span>
+                                <span class="total-price">₹{{ order.total_amount }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-orders">
+                    <span class="empty-icon">🍽️</span>
+                    <h4>No Past Orders Found</h4>
+                    <p>When you place orders, they will appear here!</p>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</body>
+</html>

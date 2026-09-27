@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - Order Summary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'delivery/css/orders.css' %}">
+</head>
+<body>
+
+    <div class="summary-container">
+        
+        <!-- Header -->
+        <header class="summary-header">
+            <div class="brand">
+                <h1 class="brand-name">Bite<span>Rush</span></h1>
+            </div>
+        </header>
+
+        <!-- Confirmation Card -->
+        <div class="summary-card">
+            
+            <div class="success-icon-badge">
+                🎉
+            </div>
+
+            <h2 class="thank-you-title">Thank you for your order, {{ username }}!</h2>
+            <p class="subtitle">Your order has been placed successfully and is being prepared.</p>
+
+            <div class="address-box">
+                <div class="address-header">
+                    <span class="pin-icon">📍</span>
+                    <h3>Delivery Address</h3>
+                </div>
+                <p class="address-text">{{ customer.address }}</p>
+            </div>
+
+            <div class="delivery-notice">
+                <span class="truck-icon">🛵</span>
+                <p>Your order will be delivered to this location shortly. Thank you for choosing BiteRush!</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                {% if cart_items %}
+                    <a href="{% url 'view_menu' cart_items.0.restaurant.id username %}" class="btn-primary">
+                        Back to Menu
+                    </a>
+                {% else %}
+                    <a href="{% url 'open_show_restaurant' %}" class="btn-primary">
+                        Browse Restaurants
+                    </a>
+                {% endif %}
+                <a href="{% url 'index' %}" class="btn-secondary">
+                    Home
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

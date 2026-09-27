@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - Your Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'delivery/css/cart.css' %}">
+</head>
+<body>
+
+    <div class="cart-container">
+        
+        <!-- Cart Navigation Header -->
+        <header class="cart-header">
+            <div class="brand">
+                <h1 class="brand-name">Bite<span>Rush</span></h1>
+            </div>
+            <div class="user-greeting">
+                <span>{{ username }}</span>'s Cart
+            </div>
+        </header>
+
+        <h2 class="page-title">Your Selected Items</h2>
+
+        {% if itemList %}
+            <div class="cart-content">
+                <!-- Items Table Container -->
+                <div class="cart-table-wrapper">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Name</th>
+                                <th class="text-right">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in itemList %}
+                                <tr>
+                                    <td class="img-cell">
+                                        <div class="item-img-wrap">
+                                            {% if item.picture %}
+                                                <img src="{{ item.picture }}" alt="{{ item.name }}">
+                                            {% else %}
+                                                <div class="placeholder-icon">🍽️</div>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td class="name-cell">
+                                        <span class="item-title">{{ item.name }}</span>
+                                    </td>
+                                    <td class="price-cell text-right">
+                                        ₹{{ item.price }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Order Summary Box -->
+                <div class="cart-summary">
+                    <h3 class="summary-title">Order Summary</h3>
+                    
+                    <div class="summary-row">
+                        <span>Total Items</span>
+                        <span>{{ itemList|length }}</span>
+                    </div>
+
+                    <div class="summary-row total-row">
+                        <span>Total Amount</span>
+                        <span class="total-price">₹{{ total_price }}</span>
+                    </div>
+
+                    <form action="{% url 'checkout' username %}" method="GET">
+                        <button type="submit" class="btn-checkout">
+                            CHECK OUT
+                        </button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <!-- Empty Cart State -->
+            <div class="empty-cart">
+                <div class="empty-icon">🛒</div>
+                <h3>Your cart is currently empty</h3>
+                <p>Add some delicious dishes from the menu to start your order!</p>
+            </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - Manage Menu</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/update_menu.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Clean Header -->
+        <header class="page-header">
+            <h1 class="hero-title">{{ restaurant.name }}</h1>
+        </header>
+
+        <div class="menu-layout">
+            
+            <!-- Left Column: Menu Items -->
+            <div class="menu-list-section">
+                <div class="section-header">
+                    <h2>Menu Collection</h2>
+                    <span class="item-count">{{ itemList|length }} Items</span>
+                </div>
+
+                <div class="items-grid">
+                    {% for item in itemList %}
+                        <div class="menu-card">
+                            <div class="item-img-container">
+                                <img src="{{ item.picture }}" alt="{{ item.name }}" class="item-img">
+                                <div class="price-chip">₹{{ item.price }}</div>
+                            </div>
+                            
+                            <div class="item-content">
+                                <div class="item-top-row">
+                                    <h3 class="item-name">{{ item.name }}</h3>
+                                    
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <a href="{% url 'edit_item' item.id %}" style="text-decoration: none; font-size: 0.8rem; font-weight: bold; color: #1D3557; background: #E2E8F0; padding: 4px 8px; border-radius: 6px;">&#x270E;</a>
+                                        <a href="{% url 'delete_item' item.id %}" onclick="return confirm('Delete this item?');" style="text-decoration: none; font-size: 0.8rem; font-weight: bold; color: #DC2626; background: #FEE2E2; padding: 4px 8px; border-radius: 6px;">&#x1F5D1;</a>
+                                        
+                                        <div class="diet-pill {% if item.vegetarian %}veg{% else %}non-veg{% endif %}">
+                                            <span class="diet-dot"></span>
+                                            <span class="diet-text">{% if item.vegetarian %}VEG{% else %}NON-VEG{% endif %}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <p class="item-desc">{{ item.description }}</p>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="empty-state">
+                            <div class="empty-icon">🍽️</div>
+                            <h3>No Dishes Added Yet</h3>
+                            <p>Fill out the form to add dishes to this restaurant's menu.</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Right Column: Add Item Form -->
+            <div class="form-section">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h2>Add New Dish</h2>
+                    </div>
+
+                    <form action="{% url 'update_menu' restaurant.id %}" method="post">
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            <label for="name">Dish Name</label>
+                            <input type="text" name="name" id="name" placeholder="e.g. Signature Truffle Burger" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description" id="description" placeholder="Describe flavor profile, ingredients, or cooking style..."></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="price">Price (₹)</label>
+                                <input type="number" name="price" id="price" step="0.01" placeholder="349.00" required>
+                            </div>
+
+                            <div class="form-group flex-1">
+                                <label>Diet Type</label>
+                                <label class="checkbox-pill">
+                                    <input type="checkbox" name="vegetarian" id="veg">
+                                    <span class="pill-label">Vegetarian</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="picture">Image URL</label>
+                            <input type="url" name="picture" id="picture" placeholder="https://example.com/image.jpg">
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            + Add Dish to Menu
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

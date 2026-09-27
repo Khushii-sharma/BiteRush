@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - All Restaurants</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/show_restaurant.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Top Navigation Header -->
+        <header class="page-header">
+            <div>
+                <h1 class="brand-name">Bite<span>Rush</span></h1>
+                <p class="subtitle">Manage Partner Restaurants</p>
+            </div>
+            <a href="{% url 'open_add_restaurant' %}" class="btn-add-main">+ Add Restaurant</a>
+        </header>
+
+        <!-- Restaurant Grid -->
+        <div class="restaurant-grid">
+            {% for r in restaurantList %}
+                <div class="restaurant-card">
+                    <!-- Image Container with Floating Rating -->
+                    <div class="card-image-wrapper">
+                        <img src="{{ r.picture }}" alt="{{ r.name }}" class="card-img">
+                        <div class="rating-badge">★ {{ r.rating }}</div>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="card-header-info">
+                            <h2 class="restaurant-name">{{ r.name }}</h2>
+                            <span class="cuisine-tag">{{ r.cuisine }}</span>
+                        </div>
+
+                        <!-- Admin Control Action Buttons -->
+                        <div class="card-actions">
+                            <a href="{% url 'open_update_menu' r.id %}" class="btn-action btn-menu">
+                                Update Menu
+                            </a>
+                            <a href="{% url 'open_update_restaurant' r.id %}" class="btn-action btn-edit">
+                                Edit
+                            </a>
+                            <a href="{% url 'delete_restaurant' r.id %}" onclick="return confirm('Delete this item?');" class="btn-action btn-delete">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="empty-state">
+                    <p>No restaurants found. Click "+ Add Restaurant" to get started!</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

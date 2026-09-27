@@ -1,0 +1,231 @@
+:root {
+    --primary: #E63946;
+    --secondary: #1D3557;
+    --bg: #F8F9FA;
+    --card-bg: #FFFFFF;
+    --text-dark: #1E293B;
+    --text-muted: #64748B;
+    --border: #E2E8F0;
+    --success-green: #16A34A;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+
+.profile-container {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+}
+
+.brand-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.brand-name span {
+    color: var(--secondary);
+}
+
+.btn-back {
+    text-decoration: none;
+    color: var(--secondary);
+    font-weight: 700;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+    background-color: #F1F5F9;
+}
+
+/* User Card */
+.user-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 32px;
+}
+
+.avatar-large {
+    width: 64px;
+    height: 64px;
+    background-color: #EEF2FF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border: 2px solid #C7D2FE;
+    flex-shrink: 0;
+}
+
+.user-name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 6px;
+}
+
+.info-row {
+    display: flex;
+    gap: 8px;
+    font-size: 0.92rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.info-label {
+    color: var(--text-muted);
+}
+
+/* Orders Section */
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 20px;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 14px;
+}
+
+.order-id {
+    font-weight: 800;
+    color: var(--secondary);
+    margin-right: 12px;
+}
+
+.order-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.order-status {
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background-color: #DCFCE7;
+    color: var(--success-green);
+    text-transform: capitalize;
+}
+
+.order-items {
+    margin-bottom: 14px;
+}
+
+.order-item-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 0.95rem;
+}
+
+.item-name {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.item-price {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.no-items {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 2px dashed var(--border);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.total-price {
+    color: var(--secondary);
+    font-size: 1.1rem;
+}
+
+/* Empty State */
+.empty-orders {
+    text-align: center;
+    padding: 48px 20px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px dashed var(--border);
+    color: var(--text-muted);
+}
+
+.empty-icon {
+    font-size: 2.8rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.empty-orders h4 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 4px;
+}

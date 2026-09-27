@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - Explore Restaurants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'delivery/css/customer_home.css' %}">
+</head>
+<body>
+
+    <div class="page-container">
+        
+        <!-- Top Navbar Header -->
+        <header class="top-bar">
+            <div class="brand">
+                <h1 class="brand-name">Bite<span>Rush</span></h1>
+            </div>
+            <a href="{% url 'profile' username %}" class="profile-avatar-btn" title="Profile">
+                <span class="profile-icon">👤</span>
+            </a>
+        </header>
+
+        <!-- Main Section Title -->
+        <section class="section-header">
+            <h2 class="section-title">Popular Restaurants</h2>
+            <p class="section-subtitle">Discover top dishes and order from your favorite spots</p>
+        </section>
+
+        <!-- Restaurant Cards Grid -->
+        <main class="restaurant-grid">
+            {% for r in restaurantList %}
+                <div class="restaurant-card">
+                    
+                    <!-- Restaurant Cover Image & Rating Badge -->
+                    <div class="card-image-box">
+                        <img src="{{ r.picture }}" alt="{{ r.name }}" class="restaurant-img">
+                        <div class="rating-badge">
+                            <span class="star">★</span> {{ r.rating }}
+                        </div>
+                    </div>
+
+                    <!-- Restaurant Details -->
+                    <div class="card-body">
+                        <h3 class="restaurant-name">{{ r.name }}</h3>
+                        <p class="cuisine-type">{{ r.cuisine }}</p>
+
+                        <!-- Action Button -->
+                        <div class="card-actions">
+                            <a href="{% url 'view_menu' r.id username %}" class="btn-view-menu">
+                                View Menu
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            {% empty %}
+                <div class="empty-state">
+                    <p class="empty-icon">🍽️</p>
+                    <h3>No Restaurants Available</h3>
+                    <p>Check back later for newly added dining partners.</p>
+                </div>
+            {% endfor %}
+        </main>
+
+    </div>
+
+</body>
+</html>

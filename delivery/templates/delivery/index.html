@@ -1,0 +1,64 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - Rush to Your Favorite Bites!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'delivery/css/styles.css' %}">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="nav-brand">
+            <h1 class="logo-text">Bite<span>Rush</span></h1>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'open_login' %}" class="nav-link">Sign in</a>
+            <a href="{% url 'open_signup' %}" class="btn btn-primary">Create account</a>
+        </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="hero-container">
+        
+        <!-- Left Hero Content -->
+        <div class="hero-text-box">
+            <span class="eyebrow-tag">RUSH TO YOUR FAVORITE BITES</span>
+            <h2 class="hero-title">
+                Your next favorite meal is closer than you think.
+            </h2>
+            <p class="hero-subtitle">
+                Browse local restaurants, build your plate, and get fresh, delicious food delivered straight to your door.
+            </p>
+
+            <div class="hero-actions">
+                <a href="{% url 'open_signup' %}" class="btn btn-primary btn-lg">Start eating well</a>
+                <a href="{% url 'open_login' %}" class="btn btn-secondary btn-lg">Sign in</a>
+            </div>
+        </div>
+
+        <!-- Right Featured Feature Card Overlay -->
+        <div class="hero-card-box">
+            <div class="featured-card">
+                <div class="card-tag">TODAY'S SPECIAL</div>
+                <h3 class="card-heading">Fresh & Fast</h3>
+                <p class="card-desc">Made to order, delivered with care from top-rated kitchens in town.</p>
+                
+                <div class="card-stat-pill">
+                    <span class="pulse-dot"></span>
+                    <span>Live Restaurant Partners Active</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

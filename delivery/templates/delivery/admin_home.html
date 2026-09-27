@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/admin.css' %}">
+</head>
+<body>
+    <div class="admin-card">
+        <h1 class="brand-title">BiteRush</h1>
+        <p class="subtitle">Welcome to Admin Dashboard</p>
+
+        <div class="admin-actions">
+            <a href="{% url 'open_add_restaurant' %}" class="admin-btn btn-primary">
+                <span class="icon">+</span> ADD NEW RESTAURANT
+            </a>
+            
+            <a href="{% url 'open_show_restaurant' %}" class="admin-btn btn-secondary">
+                <span class="icon">👁</span> SHOW RESTAURANTS
+            </a>
+        </div>
+    </div>
+</body>
+</html>

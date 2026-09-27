@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - Login</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/login.css' %}">
+</head>
+<body>
+    <div class="login-card">
+        <h1 class="brand-title">BiteRush</h1>
+        <p class="subtitle">Welcome back! Please login to your account.</p>
+
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter your username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+
+        <p class="signup-link">
+            Don't have an account? <a href="open_signup">Sign up</a>
+        </p>
+    </div>
+</body>
+</html>

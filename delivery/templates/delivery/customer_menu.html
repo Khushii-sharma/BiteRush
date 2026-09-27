@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'delivery/images/logo.png' %}">
+    <title>BiteRush - {{ restaurant.name }} Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'delivery/css/customer_menu.css' %}">
+</head>
+<body>
+
+    <div class="page-container">
+
+        <!-- Styled Flash Messages Toast -->
+        {% if messages %}
+            <div class="toast-container" id="toastBox">
+                {% for message in messages %}
+                    <div class="toast-card {{ message.tags }}">
+                        <span class="toast-icon">✓</span>
+                        <span class="toast-text">{{ message }}</span>
+                        <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <!-- Header Navigation Bar -->
+        <header class="top-bar">
+            <div class="brand">
+                <h1 class="brand-name">Bite<span>Rush</span></h1>
+            </div>
+
+            <div class="nav-right-actions">
+                <!-- View Cart Button -->
+                <a href="{% url 'show_cart' username %}" class="btn-view-cart">
+                    <span>View Cart</span>
+                </a>
+
+                <!-- Profile Avatar Icon -->
+                <a href="{% url 'profile' username %}" class="profile-avatar-btn" title="Profile">
+                    <span class="profile-icon">👤</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Clean Restaurant Title Banner -->
+        <section class="restaurant-banner">
+            <div class="restaurant-details">
+                <h2 class="restaurant-title">{{ restaurant.name }}</h2>
+                <p class="restaurant-subtitle">Select your favorite items below and add them to your cart.</p>
+            </div>
+            <span class="item-count-badge">{{ itemList|length }} Items</span>
+        </section>
+
+        <!-- Menu Item Cards Grid (2 Per Row on Large Screens) -->
+        <main class="menu-grid">
+            {% for item in itemList %}
+                <div class="menu-card">
+                    
+                    <!-- LEFT SIDE: Veg/Non-Veg, Name, Price, & Description -->
+                    <div class="card-left">
+                        <div class="diet-pill {% if item.vegetarian %}veg{% else %}non-veg{% endif %}">
+                            <span class="diet-dot"></span>
+                            <span class="diet-text">{% if item.vegetarian %}VEG{% else %}NON-VEG{% endif %}</span>
+                        </div>
+
+                        <h3 class="item-name">{{ item.name }}</h3>
+                        <div class="item-price">₹{{ item.price }}</div>
+                        <p class="item-desc">{{ item.description }}</p>
+                    </div>
+
+                    <!-- RIGHT SIDE: Image & Add to Cart Button Below Image -->
+                    <div class="card-right">
+                        <div class="card-img-container">
+                            {% if item.picture %}
+                                <img src="{{ item.picture }}" alt="{{ item.name }}" class="item-img">
+                            {% else %}
+                                <div class="placeholder-img">🍽️</div>
+                            {% endif %}
+                        </div>
+
+                        <a href="{% url 'add_to_cart' item.id username %}" class="btn-add-cart">
+                            + Add to Cart
+                        </a>
+                    </div>
+
+                </div>
+            {% empty %}
+                <div class="empty-state">
+                    <p class="empty-icon">🍽️</p>
+                    <h3>No Menu Items Available</h3>
+                    <p>This restaurant hasn't added any dishes to their menu yet.</p>
+                </div>
+            {% endfor %}
+        </main>
+
+    </div>
+    <script>
+        // Auto-dismiss alert toast after 3 seconds
+        setTimeout(() => {
+            const toast = document.getElementById('toastBox');
+            if (toast) {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(-10px)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }
+        }, 3000);
+    </script>
+
+</body>
+</html>
