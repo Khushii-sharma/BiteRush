@@ -27,6 +27,7 @@ body {
     font-weight: 800;
     color: #1D3557;
     letter-spacing: -0.5px;
+    word-break: break-word;
 }
 
 /* Page Layout */
@@ -35,12 +36,6 @@ body {
     grid-template-columns: 1fr 380px;
     gap: 28px;
     align-items: start;
-}
-
-@media (max-width: 960px) {
-    .menu-layout {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* Section Header */
@@ -126,6 +121,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 0;
 }
 
 .item-top-row {
@@ -141,6 +137,7 @@ body {
     font-weight: 700;
     color: #1D3557;
     line-height: 1.3;
+    word-break: break-word;
 }
 
 /* Veg / Non-Veg Indicator Pill */
@@ -322,4 +319,59 @@ textarea:focus {
     color: #1D3557;
     font-size: 1rem;
     margin-bottom: 4px;
+}
+
+/* --- Mobile Responsiveness Adjustments --- */
+
+@media (max-width: 960px) {
+    .menu-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card {
+        position: static;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        padding: 16px 12px 40px;
+    }
+
+    .hero-title {
+        font-size: 1.6rem;
+    }
+
+    .menu-card {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .item-img-container {
+        width: 85px;
+        height: 85px;
+    }
+
+    .price-chip {
+        font-size: 0.72rem;
+        padding: 2px 6px;
+    }
+
+    .item-top-row {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .item-name {
+        font-size: 1rem;
+    }
+
+    .form-card {
+        padding: 18px 14px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 12px;
+    }
 }

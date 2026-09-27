@@ -132,12 +132,14 @@ body {
     font-size: 0.98rem;
     font-weight: 700;
     color: var(--text-dark);
+    word-break: break-word;
 }
 
 .item-price {
     font-size: 0.98rem;
     font-weight: 800;
     color: var(--secondary);
+    white-space: nowrap;
 }
 
 /* Price Breakdown */
@@ -152,6 +154,7 @@ body {
 .breakdown-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 0.92rem;
     color: var(--text-muted);
     font-weight: 600;
@@ -168,13 +171,14 @@ body {
     padding-top: 14px;
     border-top: 2px dashed var(--border);
     margin-bottom: 0;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 800;
     color: var(--text-dark);
 }
 
 .total-amount {
     color: var(--secondary);
+    white-space: nowrap;
 }
 
 /* Razorpay Button */
@@ -204,4 +208,52 @@ body {
 
 .pay-icon {
     font-size: 1.2rem;
+}
+
+/* --- Mobile Responsiveness Adjustments --- */
+
+@media (max-width: 500px) {
+    .checkout-container {
+        padding: 0 12px;
+    }
+
+    .brand-name {
+        font-size: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.35rem;
+        margin-bottom: 16px;
+    }
+
+    .checkout-card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .card-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .item-name,
+    .item-price {
+        font-size: 0.9rem;
+    }
+
+    .price-breakdown {
+        padding: 14px;
+    }
+
+    .breakdown-row {
+        font-size: 0.88rem;
+    }
+
+    .breakdown-row.grand-total {
+        font-size: 1.02rem;
+    }
+
+    .btn-pay {
+        padding: 13px;
+        font-size: 0.95rem;
+    }
 }

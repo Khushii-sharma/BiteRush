@@ -83,11 +83,12 @@
 
     </div>
 
+    {% if order_id %}
     <!-- Razorpay Script -->
     <script>
         var options = {
-            "key": "rzp_test_TgjoR6pxgBYfK4",
-            "amount": "{{ total_price|floatformat:2|add:'0.00'|floatformat:2 }}00",
+            "key": "{{ razorpay_key_id }}",
+            "amount": "{{ amount }}",
             "currency": "INR",
             "name": "BiteRush",
             "description": "Order Payment",
@@ -110,6 +111,7 @@
             e.preventDefault();
         }
     </script>
+    {% endif %}
     
 </body>
 </html>

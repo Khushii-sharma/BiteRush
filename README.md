@@ -1,5 +1,29 @@
 # BiteRush
 
+## Run locally with Razorpay
+
+Create a private `.env` file once by copying the example:
+
+```powershell
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
+```
+
+Open `.env`, add your matching test-mode key ID and key secret from your
+Razorpay dashboard, and save it. Django loads this file automatically whenever
+it starts, so you do not need to set the variables again in PowerShell.
+`.env` is excluded from Git; never commit or share it. Environment variables
+already set by the operating system or deployment platform take precedence.
+
+Start Django as usual:
+
+```powershell
+python manage.py runserver
+```
+
+Checkout displays a configuration message if either variable is missing. If
+Razorpay reports an authentication failure, confirm the key ID and secret are
+the matching pair and are both test-mode or both live-mode credentials.
+
 ## Deploy on Render
 
 1. Push the contents of this `biterush` directory to a GitHub, GitLab, or

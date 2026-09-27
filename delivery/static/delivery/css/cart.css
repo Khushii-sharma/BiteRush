@@ -40,6 +40,7 @@ body {
     padding: 20px 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: 28px;
+    gap: 12px;
 }
 
 .brand-name {
@@ -47,6 +48,7 @@ body {
     font-weight: 800;
     color: var(--primary);
     letter-spacing: -0.5px;
+    white-space: nowrap;
 }
 
 .brand-name span {
@@ -59,9 +61,13 @@ body {
     padding: 8px 16px;
     border-radius: 20px;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--secondary);
     box-shadow: var(--shadow-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 
 .user-greeting span {
@@ -75,21 +81,22 @@ body {
     margin-bottom: 24px;
 }
 
-/* Content Layout (Table + Summary Side-by-Side on Desktop) */
+/* Stacked Layout: Summary always placed below the items table */
 .cart-content {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 28px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
 }
 
-/* Styled Items Table */
+/* Items Table Container */
 .cart-table-wrapper {
     background: var(--card-bg);
     border-radius: 16px;
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
+    width: 100%;
 }
 
 .cart-table {
@@ -128,14 +135,15 @@ body {
 }
 
 .item-img-wrap {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
     border-radius: 10px;
     overflow: hidden;
     background-color: #F1F5F9;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .item-img-wrap img {
@@ -145,28 +153,31 @@ body {
 }
 
 .placeholder-icon {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 .item-title {
     font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-dark);
+    word-break: break-word;
 }
 
 .price-cell {
     font-size: 1.05rem;
     font-weight: 800;
     color: var(--secondary);
+    white-space: nowrap;
 }
 
-/* Order Summary Box */
+/* Order Summary Box Below */
 .cart-summary {
     background: var(--card-bg);
     border-radius: 16px;
     border: 1px solid var(--border);
     padding: 24px;
     box-shadow: var(--shadow-sm);
+    width: 100%;
 }
 
 .summary-title {
@@ -200,7 +211,6 @@ body {
     color: var(--secondary);
 }
 
-/* Green Checkout Button Below Items */
 .btn-checkout {
     display: block;
     width: 100%;
@@ -246,9 +256,49 @@ body {
     margin-bottom: 6px;
 }
 
-/* Responsive view for mobile */
-@media (max-width: 768px) {
-    .cart-content {
-        grid-template-columns: 1fr;
+/* --- Mobile Responsiveness Adjustments --- */
+
+@media (max-width: 500px) {
+    .cart-container {
+        padding: 0 12px;
+    }
+
+    .brand-name {
+        font-size: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.35rem;
+        margin-bottom: 18px;
+    }
+
+    .cart-table th {
+        padding: 12px 10px;
+        font-size: 0.72rem;
+    }
+
+    .cart-table td {
+        padding: 12px 10px;
+    }
+
+    .img-cell {
+        width: 50px;
+    }
+
+    .item-img-wrap {
+        width: 44px;
+        height: 44px;
+    }
+
+    .item-title {
+        font-size: 0.92rem;
+    }
+
+    .price-cell {
+        font-size: 0.92rem;
+    }
+
+    .cart-summary {
+        padding: 18px;
     }
 }

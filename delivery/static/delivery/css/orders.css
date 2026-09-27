@@ -54,7 +54,6 @@ body {
     color: var(--secondary);
 }
 
-
 /* Main Card */
 .summary-card {
     background: var(--card-bg);
@@ -82,6 +81,7 @@ body {
     font-weight: 800;
     color: var(--secondary);
     margin-bottom: 8px;
+    word-break: break-word;
 }
 
 .subtitle {
@@ -109,6 +109,7 @@ body {
 
 .pin-icon {
     font-size: 1.1rem;
+    flex-shrink: 0;
 }
 
 .address-header h3 {
@@ -123,12 +124,13 @@ body {
     line-height: 1.5;
     font-weight: 600;
     padding-left: 26px;
+    word-break: break-word;
 }
 
 /* Delivery Banner */
 .delivery-notice {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
     background-color: #EFF6FF;
     border: 1px solid #BFDBFE;
@@ -143,6 +145,8 @@ body {
 
 .truck-icon {
     font-size: 1.4rem;
+    flex-shrink: 0;
+    line-height: 1.2;
 }
 
 /* Action Buttons */
@@ -163,6 +167,7 @@ body {
     transition: all 0.2s ease;
     box-shadow: 0 4px 12px rgba(230, 57, 70, 0.25);
     display: inline-block;
+    text-align: center;
 }
 
 .btn-primary:hover {
@@ -182,14 +187,79 @@ body {
     transition: all 0.2s ease;
     border: 1px solid var(--border);
     display: inline-block;
+    text-align: center;
 }
 
 .btn-secondary:hover {
     background-color: #E2E8F0;
 }
 
-@media (max-width: 480px) {
+/* --- Mobile Responsiveness Adjustments --- */
+
+@media (max-width: 500px) {
+    .summary-container {
+        padding: 0 12px;
+    }
+
+    .summary-header {
+        margin-bottom: 20px;
+        padding: 16px 0;
+    }
+
+    .brand-name {
+        font-size: 1.5rem;
+    }
+
+    .summary-card {
+        padding: 24px 16px;
+        border-radius: 16px;
+    }
+
+    .success-icon-badge {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+    }
+
+    .thank-you-title {
+        font-size: 1.3rem;
+    }
+
+    .subtitle {
+        font-size: 0.88rem;
+        margin-bottom: 20px;
+    }
+
+    .address-box {
+        padding: 14px;
+    }
+
+    .address-text {
+        padding-left: 0;
+        margin-top: 4px;
+        font-size: 0.9rem;
+    }
+
+    .delivery-notice {
+        padding: 12px 14px;
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+    }
+
+    .truck-icon {
+        font-size: 1.2rem;
+    }
+
     .action-buttons {
         flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.9rem;
     }
 }

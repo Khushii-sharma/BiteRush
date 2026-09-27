@@ -93,11 +93,17 @@ body {
     flex-shrink: 0;
 }
 
+.user-details {
+    min-width: 0;
+    flex: 1;
+}
+
 .user-name {
     font-size: 1.4rem;
     font-weight: 800;
     color: var(--secondary);
     margin-bottom: 6px;
+    word-break: break-word;
 }
 
 .info-row {
@@ -106,10 +112,17 @@ body {
     font-size: 0.92rem;
     color: var(--text-dark);
     font-weight: 600;
+    min-width: 0;
 }
 
 .info-label {
     color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.info-value {
+    word-break: break-all;
+    min-width: 0;
 }
 
 /* Orders Section */
@@ -137,22 +150,24 @@ body {
 .order-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--border);
     margin-bottom: 14px;
+    gap: 10px;
 }
 
 .order-id {
     font-weight: 800;
     color: var(--secondary);
-    margin-right: 12px;
+    margin-right: 8px;
 }
 
 .order-date {
     font-size: 0.85rem;
     color: var(--text-muted);
     font-weight: 600;
+    display: inline-block;
 }
 
 .order-status {
@@ -163,6 +178,8 @@ body {
     background-color: #DCFCE7;
     color: var(--success-green);
     text-transform: capitalize;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .order-items {
@@ -172,18 +189,22 @@ body {
 .order-item-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 6px 0;
     font-size: 0.95rem;
+    gap: 12px;
 }
 
 .item-name {
     font-weight: 600;
     color: var(--text-dark);
+    word-break: break-word;
 }
 
 .item-price {
     font-weight: 700;
     color: var(--text-dark);
+    white-space: nowrap;
 }
 
 .no-items {
@@ -205,6 +226,7 @@ body {
 .total-price {
     color: var(--secondary);
     font-size: 1.1rem;
+    white-space: nowrap;
 }
 
 /* Empty State */
@@ -228,4 +250,76 @@ body {
     font-weight: 800;
     color: var(--secondary);
     margin-bottom: 4px;
+}
+
+/* --- Mobile Responsiveness Adjustments --- */
+
+@media (max-width: 500px) {
+    .profile-container {
+        padding: 0 12px;
+    }
+
+    .brand-name {
+        font-size: 1.5rem;
+    }
+
+    .btn-back {
+        padding: 6px 14px;
+        font-size: 0.82rem;
+    }
+
+    .user-card {
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .avatar-large {
+        width: 52px;
+        height: 52px;
+        font-size: 1.6rem;
+    }
+
+    .user-name {
+        font-size: 1.2rem;
+    }
+
+    .info-row {
+        font-size: 0.85rem;
+        flex-direction: column;
+        gap: 2px;
+        margin-bottom: 6px;
+    }
+
+    .section-title {
+        font-size: 1.15rem;
+        margin-bottom: 14px;
+    }
+
+    .order-card {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .order-date {
+        display: block;
+        margin-top: 2px;
+    }
+
+    .order-item-row {
+        font-size: 0.88rem;
+    }
+
+    .order-footer {
+        font-size: 0.92rem;
+    }
+
+    .total-price {
+        font-size: 1rem;
+    }
 }

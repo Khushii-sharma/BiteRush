@@ -1,11 +1,17 @@
 
-from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
-from .models import Customer, Item, Restaurant, Cart, Order
+import logging
+
 import razorpay
 from django.conf import settings
+from django.contrib import messages
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from razorpay.errors import BadRequestError
+
+from .models import Customer, Item, Restaurant, Cart, Order
+
+logger = logging.getLogger(__name__)
 
 def index(request):
     return render(request, 'delivery/index.html')
@@ -207,23 +213,50 @@ def checkout(request, username):
             'error': 'Your cart is empty!',
         })
 
-    client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+    key_id = settings.RAZORPAY_KEY_ID.strip()
+    key_secret = settings.RAZORPAY_KEY_SECRET.strip()
+    if not key_id or not key_secret:
+        return render(request, 'delivery/checkout.html', {
+            'username': username,
+            'cart_items': cart_items,
+            'total_price': total_price,
+            'error': 'Online payments are not configured. Set RAZORPAY_KEY_ID and '
+                     'RAZORPAY_KEY_SECRET to your matching Razorpay credentials.',
+        })
 
+    amount_paise = round(total_price * 100)
+    client = razorpay.Client(auth=(key_id, key_secret))
     order_data = {
-        'amount': int(total_price * 100),
+        'amount': amount_paise,
         'currency': 'INR',
         'payment_capture': '1',
     }
-    order = client.order.create(data=order_data)
+    try:
+        order = client.order.create(data=order_data)
+    except BadRequestError as exc:
+        logger.exception('Razorpay order creation failed for customer %s', username)
+        if 'authentication failed' in str(exc).lower():
+            error = (
+                'Razorpay could not authenticate these credentials. Verify that '
+                'RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET are a matching pair and '
+                'both use test mode or both use live mode.'
+            )
+        else:
+            error = 'Razorpay could not create the payment order. Please try again later.'
+        return render(request, 'delivery/checkout.html', {
+            'username': username,
+            'cart_items': cart_items,
+            'total_price': total_price,
+            'error': error,
+        })
 
-    
     return render(request, 'delivery/checkout.html', {
         'username': username,
         'cart_items': cart_items,
         'total_price': total_price,
-        'razorpay_key_id': settings.RAZORPAY_KEY_ID,
+        'razorpay_key_id': key_id,
         'order_id': order['id'],
-        'amount': total_price,
+        'amount': amount_paise,
     })
 
 

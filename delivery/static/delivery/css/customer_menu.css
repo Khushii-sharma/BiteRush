@@ -42,6 +42,7 @@ body {
     padding: 20px 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: 28px;
+    gap: 12px;
 }
 
 .brand-name {
@@ -49,6 +50,7 @@ body {
     font-weight: 800;
     color: var(--primary);
     letter-spacing: -0.5px;
+    white-space: nowrap;
 }
 
 .brand-name span {
@@ -58,7 +60,8 @@ body {
 .nav-right-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+    flex-shrink: 0;
 }
 
 .btn-view-cart {
@@ -68,12 +71,13 @@ body {
     background-color: var(--secondary);
     color: #FFFFFF;
     font-weight: 700;
-    font-size: 0.92rem;
-    padding: 10px 18px;
+    font-size: 0.88rem;
+    padding: 9px 14px;
     border-radius: 12px;
     text-decoration: none;
     transition: all 0.2s ease;
     box-shadow: 0 4px 12px rgba(29, 53, 87, 0.15);
+    white-space: nowrap;
 }
 
 .btn-view-cart:hover {
@@ -85,14 +89,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     background-color: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 50%;
     text-decoration: none;
     transition: all 0.2s ease;
     box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
 }
 
 .profile-avatar-btn:hover {
@@ -101,7 +106,7 @@ body {
 }
 
 .profile-icon {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 /* Restaurant Header Banner */
@@ -114,6 +119,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
     border-top: 1px solid var(--border);
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
@@ -139,13 +145,15 @@ body {
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 800;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-/* Menu Food Grid: 2 Items per row on desktop */
+/* Menu Food Grid */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
 }
 
 /* Individual Menu Card */
@@ -158,7 +166,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    gap: 18px;
+    gap: 16px;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
@@ -173,6 +181,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    min-width: 0;
 }
 
 .diet-pill {
@@ -211,13 +220,14 @@ body {
     font-weight: 800;
     color: var(--text-dark);
     margin-bottom: 2px;
+    word-break: break-word;
 }
 
 .item-price {
-    font-size: 0.95rem; /* Smaller font than the item name */
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--secondary);
-    margin-bottom: 8px; /* Positioned above description */
+    margin-bottom: 8px;
 }
 
 .item-desc {
@@ -228,7 +238,7 @@ body {
 
 /* Right Section: Image & Add Button */
 .card-right {
-    width: 130px;
+    width: 115px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -238,7 +248,7 @@ body {
 
 .card-img-container {
     width: 100%;
-    height: 95px;
+    height: 90px;
     border-radius: 12px;
     overflow: hidden;
     background-color: #F1F5F9;
@@ -257,7 +267,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem;
+    font-size: 2rem;
 }
 
 .btn-add-cart {
@@ -267,7 +277,7 @@ body {
     background-color: var(--primary);
     color: #FFFFFF;
     font-weight: 700;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     padding: 8px 0;
     border-radius: 8px;
     text-decoration: none;
@@ -279,30 +289,7 @@ body {
     box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
 }
 
-/* Empty State */
-.empty-state {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 60px 20px;
-    background: #FFFFFF;
-    border-radius: 16px;
-    border: 1px dashed var(--border);
-    color: var(--text-muted);
-}
-
-.empty-icon {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-/* Responsive adjustment for small screens */
-@media (max-width: 500px) {
-    .menu-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Toast Notification Box */
+/* Toast Notifications */
 .toast-container {
     position: fixed;
     top: 20px;
@@ -317,7 +304,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    background-color: #10B981; /* Fresh green success color */
+    background-color: #10B981;
     color: #FFFFFF;
     padding: 12px 20px;
     border-radius: 12px;
@@ -347,17 +334,58 @@ body {
     opacity: 0.8;
 }
 
-.toast-close:hover {
-    opacity: 1;
+/* Empty State */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px dashed var(--border);
+    color: var(--text-muted);
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.95);
+.empty-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* --- Mobile Responsiveness Adjustments --- */
+
+@media (max-width: 600px) {
+    .page-container {
+        padding: 0 14px;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+
+    .brand-name {
+        font-size: 1.5rem;
+    }
+
+    .btn-view-cart {
+        padding: 8px 12px;
+        font-size: 0.82rem;
+    }
+
+    .restaurant-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px 20px;
+    }
+
+    .restaurant-title {
+        font-size: 1.5rem;
+    }
+
+    .restaurant-subtitle {
+        font-size: 0.88rem;
+    }
+
+    .item-count-badge {
+        align-self: flex-start;
+        margin-top: 6px;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
     }
 }
